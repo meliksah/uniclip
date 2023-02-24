@@ -47,22 +47,22 @@ It will also provide an address with which you can connect to the same clipboard
 ### macOS
 
 ```sh
-brew install quackduck/tap/uniclip
+brew install meliksah/tap/uniclip
 ```
 or
 
-Get an executable from [releases](https://github.com/quackduck/uniclip/releases) and install to `/usr/bin/uniclip`
+Get an executable from [releases](https://github.com/meliksah/uniclip/releases) and install to `/usr/bin/uniclip`
 
 ### GNU/Linux
 
 *Note: At least one of xsel, xclip or wayland is needed for Uniclip to work on GNU/Linux*
 
 ```sh
-brew install quackduck/tap/uniclip
+brew install meliksah/tap/uniclip
 ```
 or
 
-Get an executable from [releases](https://github.com/quackduck/uniclip/releases) and install to `/usr/bin/uniclip`
+Get an executable from [releases](https://github.com/meliksah/uniclip/releases) and install to `/usr/bin/uniclip`
 
 #### Arch/Artix/Manjaro Linux:
 ```sh
@@ -72,7 +72,7 @@ Thanks to [Scott Little](https://github.com/CodeLongAndProsper90) for submitting
 
 ### Android
 
-Get an executable from [releases](https://github.com/quackduck/uniclip/releases) and install to `$PREFIX/usr/bin/uniclip`
+Get an executable from [releases](https://github.com/meliksah/uniclip/releases) and install to `$PREFIX/usr/bin/uniclip`
 
 Install the Termux app and Termux:API app from the Play Store.
 Then, install the Termux:API package from the command line (in Termux) using:
@@ -81,7 +81,7 @@ pkg install termux-api
 ```
 ### Windows
 
-Just grab a precompiled binary from [releases](https://github.com/quackduck/uniclip/releases)
+Just grab a precompiled binary from [releases](https://github.com/meliksah/uniclip/releases)
 
 ## Uninstalling
 Uninstalling Uniclip is very easy. If you used a package manager, use its uninstall feature. If not, just delete the Uniclip binary:
@@ -91,6 +91,6 @@ On Windows, delete it from where you installed it
 On Termux, delete it from `$PREFIX/usr/bin/uniclip`
 
 ## Any other business
-Have a question, idea or just want to share something? Head over to [Discussions](https://github.com/quackduck/uniclip/discussions)
+Have a question, idea or just want to share something? Head over to [Discussions](https://github.com/meliksah/uniclip/discussions)
 
 Thanks to [Aaryan](https://github.com/aaryanporwal) for the idea!

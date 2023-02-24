@@ -38,7 +38,7 @@ Examples:
    uniclip -d --secure 192.168.86.24:53701   # join the clipboard with debug output and enable encryption
 Running just ` + "`uniclip`" + ` will start a new clipboard.
 It will also provide an address with which you can connect to the same clipboard with another device.
-Refer to https://github.com/quackduck/uniclip for more information`
+Refer to https://github.com/meliksah/uniclip for more information`
 	listOfClients  = make([]*bufio.Writer, 0)
 	localClipboard string
 	printDebugInfo = false
@@ -172,6 +172,8 @@ func MonitorSentClips(r *bufio.Reader) {
 				handleError(err)
 				continue
 			}
+		} else {
+			foreignClipboardBytes = []byte(foreignClipboard)
 		}
 		foreignClipboard = string(foreignClipboardBytes)
 		// hacky way to prevent empty clipboard TODO: find out why empty cb happens
@@ -205,6 +207,8 @@ func sendClipboard(w *bufio.Writer, clipboard string) error {
 		if err != nil {
 			return err
 		}
+	} else {
+		clipboardBytes = []byte(clipboard)
 	}
 	err = gob.NewEncoder(w).Encode(clipboardBytes)
 	if err != nil {
@@ -317,7 +321,7 @@ func runGetClipCommand() string {
 		} else if _, err = exec.LookPath("termux-clipboard-get"); err == nil {
 			cmd = exec.Command("termux-clipboard-get")
 		} else {
-			handleError(errors.New("sorry, uniclip won't work if you don't have xsel, xclip, wayland or Termux installed :(\nyou can create an issue at https://github.com/quackduck/uniclip/issues"))
+			handleError(errors.New("sorry, uniclip won't work if you don't have xsel, xclip, wayland or Termux installed :(\nyou can create an issue at https://github.com/meliksah/uniclip/issues"))
 			os.Exit(2)
 		}
 	}
@@ -345,7 +349,7 @@ func setLocalClip(s string) {
 	case "darwin":
 		copyCmd = exec.Command("pbcopy")
 	case "windows":
-		copyCmd = exec.Command("powershell.exe", "-command", "Set-Clipboard") //-Value "+"\""+s+"\"")
+		copyCmd = exec.Command("clip")
 	default:
 		if _, err := exec.LookPath("xclip"); err == nil {
 			copyCmd = exec.Command("xclip", "-in", "-selection", "clipboard")
@@ -356,7 +360,7 @@ func setLocalClip(s string) {
 		} else if _, err = exec.LookPath("termux-clipboard-set"); err == nil {
 			copyCmd = exec.Command("termux-clipboard-set")
 		} else {
-			handleError(errors.New("sorry, uniclip won't work if you don't have xsel, xclip, wayland or Termux:API installed :(\nyou can create an issue at https://github.com/quackduck/uniclip/issues"))
+			handleError(errors.New("sorry, uniclip won't work if you don't have xsel, xclip, wayland or Termux:API installed :(\nyou can create an issue at https://github.com/meliksah/uniclip/issues"))
 			os.Exit(2)
 		}
 	}
@@ -369,15 +373,13 @@ func setLocalClip(s string) {
 		handleError(err)
 		return
 	}
-	if runtime.GOOS != "windows" {
-		if _, err = in.Write([]byte(s)); err != nil {
-			handleError(err)
-			return
-		}
-		if err = in.Close(); err != nil {
-			handleError(err)
-			return
-		}
+	if _, err = in.Write([]byte(s)); err != nil {
+		handleError(err)
+		return
+	}
+	if err = in.Close(); err != nil {
+		handleError(err)
+		return
 	}
 	if err = copyCmd.Wait(); err != nil {
 		handleError(err)

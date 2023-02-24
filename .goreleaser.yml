@@ -48,7 +48,7 @@ brews:
   -
     # Repository to push the tap to.
     tap:
-      owner: quackduck
+      owner: meliksah
       name: homebrew-tap
     
     # Folder inside the repository to put the formula.
@@ -56,7 +56,7 @@ brews:
     # folder: uniclip
     # Your app's homepage.
     # Default is empty.
-    homepage: 'https://github.com/quackduck/uniclip'
+    homepage: 'https://github.com/meliksah/uniclip'
 
     # Your app's description.
     # Default is empty.

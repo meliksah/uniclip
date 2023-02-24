@@ -15,7 +15,7 @@
       vendorSha256 = "sha256-Cmgb1BAAmQ5CnruNzCGKYd2qjTNttWemrlVIRHpfS2I=";
       meta = with pkgs.lib; {
         description = "Cross-platform shared clipboard";
-        homepage = "https://github.com/quackduck/uniclip";
+        homepage = "https://github.com/meliksah/uniclip";
         license = licenses.mit;
         platforms = platforms.linux ++ platforms.darwin;
       };
